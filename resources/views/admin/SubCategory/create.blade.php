@@ -27,12 +27,14 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="category">Category</label>
-                                        <select name="category" value="{{old('category')}}" id="category"
+                                        <select name="category"  id="category"
                                             class="form-control @error('category') is-invalid @enderror">
                                             <option value="" selected disabled>Select a category</option>
                                             @if (!empty($category))
                                                 @foreach ($category as $categories)
-                                                    <option value="{{ $categories->id }}">{{ $categories->name }}</option>
+                                                    <option value="{{ $categories->id }}"
+                                                        {{ old('category') == $categories->id ? 'selected' : '' }}>
+                                                        {{ $categories->name }}</option>
                                                 @endforeach
                                             @endif
                                         </select>

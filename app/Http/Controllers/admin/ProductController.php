@@ -32,17 +32,9 @@ class ProductController extends Controller
             'is_featured' => 'required',
         ];
 
-        // Conditional rule for 'qty' based on 'track_qty' value
-        if ($req->track_qty == '1') {
-            $rules['qty'] = 'required|integer|min:1';
-        } else {
-            $rules['qty'] = 'nullable';
-        }
-
-        // Perform validation
         $validator = Validator::make($req->all(), $rules);
 
-        // Check validation results
+    
         if ($validator->fails()) {
             return redirect()->route('Product.create')
                 ->withErrors($validator)
