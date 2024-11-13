@@ -231,6 +231,8 @@
             </section>
         </form>
     </div>
+<!-- Include jQuery from a CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         function toggleInputFields() {
@@ -248,8 +250,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', toggleInputFields);
-    </script>
-    <script>
+   
         // Wait for the DOM to be ready before initializing CKEditor
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize CKEditor on the textarea
@@ -259,6 +260,26 @@
                     console.error(error);
                 });
         });
+
+
+        $(document).ready(function(){
+            $('#category').change(function(){
+                let categories=$(this).val();
+                console.log(categories)
+                $.ajax({
+                    url:"{{ route('product-subcategories.index') }}",
+                    type:'post',
+                    data:{categories:categories},
+                    dataType:'json',
+                    headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Add CSRF token to header
+            },
+                    success:function(response){
+                        $("sub_category").find()
+                    }
+                })
+            })
+        })
     </script>
     
 @endsection

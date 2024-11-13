@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+
 		<title>Laravel Shop :: Administrative Panel</title>
 		<!-- Google Font: Source Sans Pro -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -154,6 +156,7 @@
 		</div>
 		<!-- ./wrapper -->
 		<!-- jQuery -->
+		
 		<script src="{{asset('admin-asset/plugins/jquery/jquery.min.js')}}"></script>
 		<!-- Bootstrap 4 -->
 		<script src="{{asset('admin-asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -163,6 +166,10 @@
 		<script src="{{asset('admin-asset/js/demo.js')}}"></script>
 		{{-- cke editor  --}}
 		<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
+		<!-- Include jQuery from a CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 	</body>
 </html>

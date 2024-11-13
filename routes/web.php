@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\SubCategoryController as AdminSubCategoryController;
 
 use App\Http\Middleware\IsAdmin;
@@ -49,6 +50,10 @@ Route::middleware([IsAdmin::class])->group(function () {
     // ProductController
     Route::get('admin/product/create', [ProductController::class, 'create'])->name('Product.create');
     Route::post('admin/Product/store', [ProductController::class, 'store'])->name('Product.store');
+
+    // ProductSubCategoryController
+    Route::post('admin/product-subcategories', [ProductSubCategoryController::class, 'index'])->name('product-subcategories.index');
+
 
 });
 
