@@ -37,14 +37,15 @@
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="description">Description</label>
-                                                <textarea name="description" value="{{ old('description') }}" id="description" cols="90" rows="10"
-                                                    class="summernote text-center @error('description') is-invalid @enderror"
-                                                    placeholder="Enter Your Description"></textarea>
+                                                <textarea name="description" id="description" cols="90" rows="10"
+                                                    class="ckeditor text-center @error('description') is-invalid @enderror"
+                                                    placeholder="Enter Your Description">{{ old('description') }}</textarea>
                                                 @error('description')
                                                     <div class="text text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -248,4 +249,16 @@
 
         document.addEventListener('DOMContentLoaded', toggleInputFields);
     </script>
+    <script>
+        // Wait for the DOM to be ready before initializing CKEditor
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize CKEditor on the textarea
+            ClassicEditor
+                .create(document.querySelector('#description'))
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
+    
 @endsection

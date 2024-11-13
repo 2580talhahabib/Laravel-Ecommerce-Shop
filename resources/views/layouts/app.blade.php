@@ -161,5 +161,8 @@
 		<script src="{{asset('admin-asset/js/adminlte.min.js')}}"></script>
 		<!-- AdminLTE for demo purposes -->
 		<script src="{{asset('admin-asset/js/demo.js')}}"></script>
+		{{-- cke editor  --}}
+		<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
 	</body>
 </html>
