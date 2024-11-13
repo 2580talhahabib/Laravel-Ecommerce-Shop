@@ -176,13 +176,13 @@
                                         <select name="sub_category" id="sub_category" class="form-control @error('sub_category')
                                             is-invalid
                                         @enderror">
-                                            <option value="" selected disabled>Select a SubCategory</option>
-                                            @foreach ($subcategory as $subcategories)
+                                            <option value="" >Select a SubCategory</option>
+                                            {{-- @foreach ($subcategory as $subcategories)
                                                 <option value="{{ $subcategories->id }}"
                                                     {{ old('sub_category') == $subcategories->id ? 'selected' : '' }}
                                                     >
                                                     {{ $subcategories->name }}</option>
-                                            @endforeach
+                                            @endforeach --}}
 
                                         </select>
                                         @error('sub_category')
@@ -275,7 +275,11 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Add CSRF token to header
             },
                     success:function(response){
-                        $("sub_category").find()
+                        $("#sub_category").empty().append('<option value="">Select a SubCategory</option>');
+                
+                response.subCategories.forEach(function(item) {
+                    $("#sub_category").append(`<option value="${item.id}">${item.name}</option>`);
+                        })
                     }
                 })
             })
