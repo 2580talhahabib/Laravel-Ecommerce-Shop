@@ -13,6 +13,8 @@
 		<!-- Theme style -->
 		<link rel="stylesheet" href="{{asset('admin-asset/css/adminlte.min.css')}}">
 		<link rel="stylesheet" href="{{asset('admin-asset/css/custom.css')}}">
+		<!-- Include Dropzone CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.css" />
 	</head>
 	<body class="hold-transition sidebar-mini">
 		<!-- Site wrapper -->
@@ -166,9 +168,11 @@
 		<script src="{{asset('admin-asset/js/demo.js')}}"></script>
 		{{-- cke editor  --}}
 		<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
-
 		<!-- Include jQuery from a CDN -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Dropzone JS -->
+<script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.js"></script>
 
 
 	</body>

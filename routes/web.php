@@ -48,6 +48,8 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::post('admin/Brand/destroy/{id}', [BrandController::class, 'destroy'])->name('Brand.destroy');
 
     // ProductController
+    Route::get('admin/product/index', [ProductController::class, 'index'])->name('Product.index');
+
     Route::get('admin/product/create', [ProductController::class, 'create'])->name('Product.create');
     Route::post('admin/Product/store', [ProductController::class, 'store'])->name('Product.store');
 
