@@ -195,31 +195,31 @@
           if(response.status == false){
 let error=response.errors;
 if(error){
-    if(title.error){
+    if(error.title){
     $('#title').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.title[0]);
   }else{
     $('#title').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
   }
-//   if(error.price){
-//     $('#price').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.price[0]);
-//   }else{
-//     $('#price').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
-//   }
-//   if(error.category){
-//     $('#category').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.category[0]);
-//   }else{
-//     $('#category').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
-//   }
-//   if (error.is_featured) {
-//     $('#is_featured').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.is_featured[0]);
-// } else {
-//     $('#is_featured').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
-// }
-//   if (error.sku) {
-//     $('#sku').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.sku[0]);
-// } else {
-//     $('#sku').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
-// }
+  if(error.price){
+    $('#price').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.price[0]);
+  }else{
+    $('#price').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+  }
+  if(error.category){
+    $('#category').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.category[0]);
+  }else{
+    $('#category').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+  }
+  if (error.is_featured) {
+    $('#is_featured').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.is_featured[0]);
+} else {
+    $('#is_featured').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+}
+  if (error.sku) {
+    $('#sku').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.sku[0]);
+} else {
+    $('#sku').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+}
 
 
 }
