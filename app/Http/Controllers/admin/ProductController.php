@@ -56,7 +56,7 @@ class ProductController extends Controller
         }else{
        return response()->json([
         'status'=>false,
-        'errors'=>$validator,
+        'errors'=>$validator->errors(),
        ]);
         }
 
