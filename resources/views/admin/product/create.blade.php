@@ -29,7 +29,8 @@
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="title">Title</label>
-                                            <input type="text" name="title" id="title" class="form-control" placeholder="Title">	
+                                            <input type="text" name="title" id="title" class="form-control" placeholder="Title">
+                                        <p></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -54,6 +55,7 @@
                                         <div class="mb-3">
                                             <label for="price">Price</label>
                                             <input type="text" name="price" id="price" class="form-control" placeholder="Price">	
+                                        <p></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -75,7 +77,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="sku">SKU (Stock Keeping Unit)</label>
-                                            <input type="text" name="sku" id="sku" class="form-control" placeholder="sku">	
+                                            <input type="text" name="sku" id="sku" class="form-control" placeholder="sku">
+                                            <p></p>	
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -121,6 +124,7 @@
                                         <option value="">Clothes</option>
                                         <option value="">Furniture</option>
                                     </select>
+                                    <p></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="category">Sub category</label>
@@ -150,10 +154,11 @@
                             <div class="card-body">	
                                 <h2 class="h4 mb-3">Featured product</h2>
                                 <div class="mb-3">
-                                    <select name="status" id="status" class="form-control">
+                                    <select name="is_featured" id="is_featured"  class="form-control">
                                         <option value="0">No</option>
                                         <option value="1">Yes</option>                                                
                                     </select>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>                                 
@@ -187,7 +192,38 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
         success:function(response){
-console.log(response)
+          if(response.status == false){
+let error=response.errors;
+if(error){
+    if(title.error){
+    $('#title').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.title[0]);
+  }else{
+    $('#title').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+  }
+//   if(error.price){
+//     $('#price').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.price[0]);
+//   }else{
+//     $('#price').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+//   }
+//   if(error.category){
+//     $('#category').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.category[0]);
+//   }else{
+//     $('#category').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+//   }
+//   if (error.is_featured) {
+//     $('#is_featured').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.is_featured[0]);
+// } else {
+//     $('#is_featured').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+// }
+//   if (error.sku) {
+//     $('#sku').addClass('is-invalid').siblings('p').addClass('invalid-feedback').text(error.sku[0]);
+// } else {
+//     $('#sku').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').text('');
+// }
+
+
+}
+          }
         }
     })
     })
