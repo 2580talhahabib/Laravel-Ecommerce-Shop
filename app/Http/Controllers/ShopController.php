@@ -46,11 +46,23 @@ class ShopController extends Controller
             $brandArray=explode(',',$req->get('brand'));
             $products = $products->whereIn('brand_id', $brandArray);
         }
+        $min=$req->get('min_price');
+        $max=$req->get('max_price');
+
+        if($min != '' && $max != ''){
+            if($max == 1000){
+                $products=$products->whereBetween('price',[intval($min),1000]);
+            }else{
+                $products=$products->whereBetween('price',[intval($min),intval($max)]);
+
+            }
+        }
 
         $products = $products->orderBy('id', 'DESC')->get();
 
 
-        return view('frontant.shop', compact(['categories', 'Brand', 'products','categoryselected','subcategoryselected','brandArray']));
+        return view('frontant.shop', compact(['categories', 'Brand', 'products','categoryselected','subcategoryselected','brandArray','min','max']));
+
     }
 }
 

@@ -22,51 +22,54 @@
                         <div class="card-body">
                             <div class="accordion accordion-flush" id="accordionExample">
                                 @if ($categories->isNotEmpty())
-                                @foreach ($categories as $key => $category)
-                                    <div class="accordion-item">
-                                        {{-- Check if the category has subcategories --}}
-                                        @if ($category && $category->subcategory->isNotEmpty())
-                                            <h2 class="accordion-header" id="headingOne-{{ $key }}">
-                                                <button class="accordion-button collapsed {{ ($categoryselected == $category->id ) ? 'show' : ''}}" type="button" data-bs-toggle="collapse"
+                                    @foreach ($categories as $key => $category)
+                                        <div class="accordion-item">
+                                            {{-- Check if the category has subcategories --}}
+                                            @if ($category && $category->subcategory->isNotEmpty())
+                                                <h2 class="accordion-header" id="headingOne-{{ $key }}">
+                                                    <button
+                                                        class="accordion-button collapsed {{ $categoryselected == $category->id ? 'show' : '' }}"
+                                                        type="button" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseOne-{{ $key }}"
                                                         aria-controls="collapseOne-{{ $key }}">
 
                                                         <span
-                                                        style="{{ $categoryselected == $category->id ? 'color: #ffcc00' : '' }}">
-                                                        {{ $category->name }}
-                                                    </span>
-                                                </button>
-                                            </h2>
-                                            <div id="collapseOne-{{ $key }}"
-                                                 class="accordion-collapse collapse {{ ($categoryselected == $category->id ) ? 'show' : '' }}"
-                                                 aria-labelledby="headingOne-{{ $key }}"
-                                                 data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <div class="navbar-nav">
-                                                        @foreach ($category->subcategory as $subcat)
-                                                            <a href="{{ route('front.shop', [$category->slug, $subcat->slug]) }}"
-                                                               class="nav-item nav-link">
-                                                               <span
-                                                            style="{{ $subcategoryselected == $subcat->id ? 'color: blue' : '' }}">
-                                                            {{ $subcat->name }}
+                                                            style="{{ $categoryselected == $category->id ? 'color: #ffcc00' : '' }}">
+                                                            {{ $category->name }}
                                                         </span>
-                                                            </a>
-                                                        @endforeach
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne-{{ $key }}"
+                                                    class="accordion-collapse collapse {{ $categoryselected == $category->id ? 'show' : '' }}"
+                                                    aria-labelledby="headingOne-{{ $key }}"
+                                                    data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <div class="navbar-nav">
+                                                            @foreach ($category->subcategory as $subcat)
+                                                                <a href="{{ route('front.shop', [$category->slug, $subcat->slug]) }}"
+                                                                    class="nav-item nav-link">
+                                                                    <span
+                                                                        style="{{ $subcategoryselected == $subcat->id ? 'color: blue' : '' }}">
+                                                                        {{ $subcat->name }}
+                                                                    </span>
+                                                                </a>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @else
-                                            {{-- If no subcategories, just link to the category --}}
-                                            <a href="{{ route('front.shop', $category->slug) }}" class="nav-item nav-link">
-                                                <span
-                                                style="{{ $categoryselected == $category->id ? 'color:green ' : '' }}">
-                                                {{ $category->name }}
-                                            </span>
-                                            </a>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            @endif
+                                            @else
+                                                {{-- If no subcategories, just link to the category --}}
+                                                <a href="{{ route('front.shop', $category->slug) }}"
+                                                    class="nav-item nav-link">
+                                                    <span
+                                                        style="{{ $categoryselected == $category->id ? 'color:green ' : '' }}">
+                                                        {{ $category->name }}
+                                                    </span>
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @endif
 
                             </div>
                         </div>
@@ -81,8 +84,9 @@
                             @if ($Brand->isNotEmpty())
                                 @foreach ($Brand as $Brands)
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input brand-label" {{ (in_array($Brands->id,$brandArray)) ? 'checked' :'' }} type="checkbox" value="{{ $Brands->id }}"
-                                            id="flexCheckDefault-{{ $Brands->id }}">
+                                        <input class="form-check-input brand-label"
+                                            {{ in_array($Brands->id, $brandArray) ? 'checked' : '' }} type="checkbox"
+                                            value="{{ $Brands->id }}" id="flexCheckDefault-{{ $Brands->id }}">
                                         <label class="form-check-label" for="flexCheckDefault">
                                             {{ $Brands->name }}
                                         </label>
@@ -99,30 +103,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    $0-$100
-                                </label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    $100-$200
-                                </label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    $200-$500
-                                </label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    $500+
-                                </label>
-                            </div>
+                            <input type="text" class="js-range-slider" name="my_range" value="" />
                         </div>
                     </div>
                 </div>
@@ -198,21 +179,47 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-$(document).ready(function() {
-$('.brand-label').change(function(){
- getready()
-})
-function getready(){
-    var brand=[];
-        $('.brand-label').each(function(){
-           if($(this).is(":checked")==true){
-         brand.push($(this).val());
-           }
-        })
-        var url='{{ url()->current() }}?';
-        window.location.href=url+'&brand='+brand.toString()
-console.log(brand.push())
+    $(document).ready(function(){
+        $(".js-range-slider").ionRangeSlider({
+        type: "double",
+        min: 0,
+        max: 1000,
+        from: {{ $min ?? 0  }},
+        step: 10,
+        to: {{ $max ?? 1000  }},
+        skin: "round",
+        max_postfix: "+",
+        prefix: "$",
+        onFinish: function($image) {
+            getready();
+        }
+    });
+    var slider = $(".js-range-slider").data("ionRangeSlider");
 
-}
-})
+
+    // var slider=$("")
+
+        $('.brand-label').change(function() {
+            getready()
+        })
+
+        function getready() {
+            var brand = [];
+            $('.brand-label').each(function() {
+                if ($(this).is(":checked") == true) {
+                    brand.push($(this).val());
+                }
+            })
+            var url = '{{ url()->current() }}?';
+            url += '&min_price='+slider.result.from+'&max_price='+slider.result.to;
+            if(brand.length >0){
+                url +='&brand=' + brand.toString();
+            }
+            window.location.href = url ;
+            // console.log(brand.push())
+
+        }
+    })
+
+
 </script>
