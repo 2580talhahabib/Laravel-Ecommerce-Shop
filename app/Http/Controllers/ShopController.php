@@ -72,7 +72,7 @@ class ShopController extends Controller
 
 
 
-        $products = $products->orderBy('id', 'DESC')->get();
+        $products = $products->orderBy('id', 'DESC')->paginate(2);
 
 
         return view('frontant.shop', compact(['categories', 'Brand', 'products','categoryselected','subcategoryselected','brandArray','min','max'], 'sort'));
