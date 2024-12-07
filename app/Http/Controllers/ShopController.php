@@ -57,11 +57,25 @@ class ShopController extends Controller
 
             }
         }
+               $sort=$req->get('sort');
+        if($sort != '') {
+            if($sort == 'price_latest') {
+                $products = $products->latest('id');
+            } elseif($sort== 'price_high') {
+                $products = $products->orderBy('price', 'DESC');
+            } elseif($sort== 'price_low') {
+                $products = $products->orderBy('price', 'ASC');
+            }
+        } else {
+            $products = $products->orderBy('id', 'DESC');
+        }
+
+
 
         $products = $products->orderBy('id', 'DESC')->get();
 
 
-        return view('frontant.shop', compact(['categories', 'Brand', 'products','categoryselected','subcategoryselected','brandArray','min','max']));
+        return view('frontant.shop', compact(['categories', 'Brand', 'products','categoryselected','subcategoryselected','brandArray','min','max'], 'sort'));
 
     }
 }

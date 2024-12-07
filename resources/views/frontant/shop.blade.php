@@ -112,15 +112,12 @@
                         <div class="col-12 pb-1">
                             <div class="d-flex align-items-center justify-content-end mb-4">
                                 <div class="ml-2">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                                            data-bs-toggle="dropdown">Sorting</button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Latest</a>
-                                            <a class="dropdown-item" href="#">Price High</a>
-                                            <a class="dropdown-item" href="#">Price Low</a>
-                                        </div>
-                                    </div>
+                                    <select name="sort" id="sort" class="form-control">
+                                        <option value="price_latest" {{ ($sort == 'price_latest' ) ? 'selected' :  ''}}>Latest</option>
+                                        <option value="price_high"     {{ ($sort == 'price_high' ) ? 'selected' :  ''}}>Price High</option>
+                                        <option value="price_low"     {{ ($sort == 'price_low' ) ? 'selected' :  ''}}>Price Low</option>
+                                    </select>
+                        
                                 </div>
                             </div>
                         </div>
@@ -203,6 +200,10 @@
             getready()
         })
 
+        $('#sort').change(function(){
+            getready();
+        })
+
         function getready() {
             var brand = [];
             $('.brand-label').each(function() {
@@ -215,6 +216,10 @@
             if(brand.length >0){
                 url +='&brand=' + brand.toString();
             }
+
+        //    for sorting
+        url += '&sort='+$('#sort').val();
+
             window.location.href = url ;
             // console.log(brand.push())
 
