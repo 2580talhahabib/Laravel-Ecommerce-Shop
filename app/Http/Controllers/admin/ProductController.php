@@ -55,9 +55,11 @@ $imageName=null;
 
         $validator = Validator::make($req->all(), $rules);
         if ($validator->passes()) {
+
+            $slug = str_replace(' ', '-', $req->slug);
             $create=Product::create([
            'title' => $req->title,
-           'slug' => $req->slug,
+           'slug' => $slug,
             'description' => $req->description,
             'image'=>$imageName,
             'price' =>$req->price,
@@ -71,6 +73,7 @@ $imageName=null;
             'brand_id' => $req->brand,
             'is_featured' => $req->is_featured ,
             ]);
+
             // return redirect()->route('Product.index')->with('success','Product Added Successfully');
             return response()->json([
                 'status'=>true,

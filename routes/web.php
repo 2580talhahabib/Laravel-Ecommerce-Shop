@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 use ProductImageController as GlobalProductImageController;
 
 // Frontantcontroller
-Route::get('/',[FrontController::class,'index'])->name('front.name');
+Route::get('/',[FrontController::class,'index'])->name('front.Home');
 Route::get('/shop/{categoryslug?}/{subcategoryslug?}',[ShopController::class,'index'])->name('front.shop');
+Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.product');
 
 
 // AdminLoginController

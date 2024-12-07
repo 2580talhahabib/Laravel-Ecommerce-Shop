@@ -5,14 +5,11 @@
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <!-- <img src="images/carousel-1.jpg" class="d-block w-100" alt=""> -->
-
                 <picture>
                     <source media="(max-width: 799px)" srcset="images/carousel-1-m.jpg" />
                     <source media="(min-width: 800px)" srcset="images/carousel-1.jpg" />
                     <img src="images/carousel-1.jpg" alt="" />
                 </picture>
-
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
                         <h1 class="display-4 text-white mb-3">Kids Fashion</h1>
@@ -22,13 +19,11 @@
                 </div>
             </div>
             <div class="carousel-item">
-
                 <picture>
                     <source media="(max-width: 799px)" srcset="images/carousel-2-m.jpg" />
                     <source media="(min-width: 800px)" srcset="images/carousel-2.jpg" />
                     <img src="images/carousel-2.jpg" alt="" />
                 </picture>
-
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
                         <h1 class="display-4 text-white mb-3">Womens Fashion</h1>
@@ -38,14 +33,11 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <!-- <img src="images/carousel-3.jpg" class="d-block w-100" alt=""> -->
-
                 <picture>
                     <source media="(max-width: 799px)" srcset="images/carousel-3-m.jpg" />
                     <source media="(min-width: 800px)" srcset="images/carousel-3.jpg" />
                     <img src="images/carousel-2.jpg" alt="" />
                 </picture>
-
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
                         <h1 class="display-4 text-white mb-3">Shop Online at Flat 70% off on Branded Clothes</h1>
@@ -65,16 +57,17 @@
         </button>
     </div>
 </section>
+
 <section class="section-2">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="box shadow-lg">
                     <div class="fa icon fa-check text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Quality Product</h5>
+                    <h2 class="font-weight-semi-bold m-0">Quality Product</h2>
                 </div>
             </div>
-            <div class="col-lg-3 ">
+            <div class="col-lg-3">
                 <div class="box shadow-lg">
                     <div class="fa icon fa-shipping-fast text-primary m-0 mr-3"></div>
                     <h2 class="font-weight-semi-bold m-0">Free Shipping</h2>
@@ -86,15 +79,16 @@
                     <h2 class="font-weight-semi-bold m-0">14-Day Return</h2>
                 </div>
             </div>
-            <div class="col-lg-3 ">
+            <div class="col-lg-3">
                 <div class="box shadow-lg">
                     <div class="fa icon fa-phone-volume text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                    <h2 class="font-weight-semi-bold m-0">24/7 Support</h2>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <section class="section-3">
     <div class="container">
         <div class="section-title">
@@ -102,26 +96,23 @@
         </div>
         <div class="row pb-3">
             @if (getCategories()->isNotEmpty())
-            @foreach (getCategories() as $category)
-            <div class="col-lg-3">
-                <div class="cat-card">
-                    <div class="left">
-                        @if ($category->image != '')
-                        <img src="{{ asset('/'.$category->image) }}" alt="" class="img-fluid">
-                        @endif
-                    </div>
-                    <div class="right">
-                        <div class="cat-data">
-                            <h2>{{ $category->name  }}</h2>
-                            {{-- <p>100 Products</p> --}}
+                @foreach (getCategories() as $category)
+                    <div class="col-lg-3">
+                        <div class="cat-card">
+                            <div class="left">
+                                @if ($category->image != '')
+                                    <img src="{{ asset('/'.$category->image) }}" alt="" class="img-fluid">
+                                @endif
+                            </div>
+                            <div class="right">
+                                <div class="cat-data">
+                                    <h2>{{ $category->name  }}</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            @endforeach
-
+                @endforeach
             @endif
-
         </div>
     </div>
 </section>
@@ -131,74 +122,75 @@
         <div class="section-title">
             <h2>Featured Products</h2>
         </div>
-             <div class="col-md-3">
-                <div class="card product-card">
-                    @if ($Featuredproduct->count() > 0)
-@foreach ($Featuredproduct as $product)
-<div class="product-image position-relative">
-<a href="" class="product-img"><img class="card-img-top" style="height: 50vh;width:100%;"  src="{{ asset('/storage/product/'.$product->image) }}" ></a>
-
-<a class="whishlist" href="222"><i class="far fa-heart"></i></a>
-
-<div class="product-action">
-    <a class="btn btn-dark" href="#">
-        <i class="fa fa-shopping-cart"></i> Add To Cart
-    </a>
-</div>
-</div>
-<div class="card-body text-center mt-3">
-<a class="h6 link" href="product.php">{{ $product->title }}</a>
-<div class="price mt-2">
-    <span class="h5"><strong>{{ $product->price }}</strong></span>
-    @if ($product->compare_price >0)
-    <span class="h6 text-underline"><del>{{ $product->compare_price }}</del></span>
-
-    @endif
-</div>
-</div>
-@endforeach
-                    @endif
-
-                </div>
+        @if ($Featuredproduct->count() > 0)
+            <div class="row pb-3">
+                @foreach ($Featuredproduct as $product)
+                    <div class="col-md-3">
+                        <div class="card product-card">
+                            <div class="product-image position-relative">
+                                <a href="{{ route('front.product', [$product->slug]) }}" class="product-img">
+                                    <img class="card-img-top" style="height: 50vh;width:100%;" src="{{ asset('/storage/product/'.$product->image) }}" alt="{{ $product->title }}">
+                                </a>
+                                <a class="whishlist" href="#"><i class="far fa-heart"></i></a>
+                                <div class="product-action">
+                                    <a class="btn btn-dark" href="#">
+                                        <i class="fa fa-shopping-cart"></i> Add To Cart
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center mt-3">
+                                <a class="h6 link" href="{{ route('front.product', [$product->slug]) }}">{{ $product->title }}</a>
+                                <div class="price mt-2">
+                                    <span class="h5"><strong>{{ $product->price }}</strong></span>
+                                    @if ($product->compare_price > 0)
+                                        <span class="h6 text-underline"><del>{{ $product->compare_price }}</del></span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        </div>
+        @else
+            <p>No featured products available.</p>
+        @endif
     </div>
 </section>
 
 <section class="section-4 pt-5">
     <div class="container">
         <div class="section-title">
-            <h2>Latest Produsts</h2>
+            <h2>Latest Products</h2>
         </div>
         <div class="row pb-3">
             @if ($latestproduct->isNotEmpty())
-            @foreach ($latestproduct as $product)
-            <div class="col-md-3">
-                <div class="card product-card">
-                    <div class="product-image position-relative" >
-                        <a href="" class="product-img"><img class="card-img-top" style="height: 50vh;width:100%;"  src="{{ asset('storage/product/'.$product->image) }}" alt=""></a>
-                        <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
-
-                        <div class="product-action">
-                            <a class="btn btn-dark" href="#">
-                                <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>
+                @foreach ($latestproduct as $product)
+                    <div class="col-md-3">
+                        <div class="card product-card">
+                            <div class="product-image position-relative">
+                                <a href="{{ route('front.product', [$product->slug]) }}" class="product-img">
+                                    <img class="card-img-top" style="height: 50vh;width:100%;" src="{{ asset('storage/product/'.$product->image) }}" alt="{{ $product->title }}">
+                                </a>
+                                <a class="whishlist" href="#"><i class="far fa-heart"></i></a>
+                                <div class="product-action">
+                                    <a class="btn btn-dark" href="#">
+                                        <i class="fa fa-shopping-cart"></i> Add To Cart
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center mt-3">
+                                <a class="h6 link" href="{{ route('front.product', [$product->slug]) }}">{{ $product->title }}</a>
+                                <div class="price mt-2">
+                                    <span class="h5"><strong>{{ $product->price }}</strong></span>
+                                    @if ($product->compare_price > 0)
+                                        <span class="h6 text-underline"><del>{{ $product->compare_price }}</del></span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body text-center mt-3">
-                        <a class="h6 link" href="product.php">{{ $product->title }}</a>
-                        <div class="price mt-2">
-                            <span class="h5"><strong>{{ $product->price }}</strong></span>
-                            <span class="h6 text-underline"><del>{{ $product->compare_price }}</del></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-
-
+                @endforeach
             @endif
-
         </div>
     </div>
 </section>

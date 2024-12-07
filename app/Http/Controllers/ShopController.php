@@ -78,5 +78,14 @@ class ShopController extends Controller
         return view('frontant.shop', compact(['categories', 'Brand', 'products','categoryselected','subcategoryselected','brandArray','min','max'], 'sort'));
 
     }
+    public function product($slug){
+$product=product::where('slug',$slug)->first();
+if($product== null){
+    abort(404);
+}else{
+    return view('frontant.product',compact('product'));
+}
+
+    }
 }
 
