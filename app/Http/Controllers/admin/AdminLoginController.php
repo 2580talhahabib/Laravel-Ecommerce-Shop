@@ -28,7 +28,7 @@ if ($validator->passes()) {
                 'password' => $req->password,
         ]);
         return redirect()->route('admin.login')->with('success','you are successfully Register');
-        
+
 
 }else{
         return redirect()->route('admin.register')->withErrors($validator)->withInput();
@@ -55,5 +55,5 @@ if($validator->passes()){
    }
 
 
-   
+
 }
