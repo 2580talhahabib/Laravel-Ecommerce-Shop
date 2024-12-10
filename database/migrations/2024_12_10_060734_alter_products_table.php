@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
 $table->text('short_desc')->nullable()->after('description');
-$table->text('short_desc')->nullable()->after('description');
 $table->text('shiping_returns')->nullable()->after('short_desc');
-$table->text('shiping_returns')->nullable()->after('short_desc');
+$table->text('related_products')->nullable()->after('shiping_returns');
         });
     }
 
@@ -24,6 +23,10 @@ $table->text('shiping_returns')->nullable()->after('short_desc');
      */
     public function down(): void
     {
-        //
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('short_desc');
+            $table->dropColumn('shiping_returns');
+            $table->dropColumn('related_products');
+                    });
     }
 };
