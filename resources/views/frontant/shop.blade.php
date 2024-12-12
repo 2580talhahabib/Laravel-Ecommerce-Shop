@@ -153,7 +153,7 @@
                         @endif
 
                         <div class="col-md-12 pt-5">
-                            {{ $products->withQueryString()->links() }}
+                            {{ $products->links() }}
 
                         </div>
                     </div>

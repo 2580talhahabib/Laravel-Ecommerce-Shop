@@ -13,9 +13,12 @@
 		<!-- Theme style -->
 		<link rel="stylesheet" href="{{asset('admin-asset/css/adminlte.min.css')}}">
 		<link rel="stylesheet" href="{{asset('admin-asset/css/custom.css')}}">
-		
+
 		<!-- Include Dropzone CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.css" />
+{{-- include relative dropown  --}}
+<link rel="stylesheet" type="text/css" href="{{ asset('front-asset/css/magicsuggest.css') }}" />
+
 	</head>
 	<body class="hold-transition sidebar-mini">
 		<!-- Site wrapper -->
@@ -26,14 +29,14 @@
 				<ul class="navbar-nav">
 					<li class="nav-item">
 					  	<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-					</li>					
+					</li>
 				</ul>
 				<div class="navbar-nav pl-2">
 					<!-- <ol class="breadcrumb p-0 m-0 bg-white">
 						<li class="breadcrumb-item active">Dashboard</li>
 					</ol> -->
 				</div>
-				
+
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
 						<a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -49,7 +52,7 @@
 							<div class="mb-3">example@example.com</div>
 							<div class="dropdown-divider"></div>
 							<a href="#" class="dropdown-item">
-								<i class="fas fa-user-cog mr-2"></i> Settings								
+								<i class="fas fa-user-cog mr-2"></i> Settings
 							</a>
 							<div class="dropdown-divider"></div>
 							<a href="#" class="dropdown-item">
@@ -57,8 +60,8 @@
 							</a>
 							<div class="dropdown-divider"></div>
 							<a href="#" class="dropdown-item text-danger">
-								<i class="fas fa-sign-out-alt mr-2"></i> Logout							
-							</a>							
+								<i class="fas fa-sign-out-alt mr-2"></i> Logout
+							</a>
 						</div>
 					</li>
 				</ul>
@@ -82,7 +85,7 @@
 								<a href="{{route('admin.dashboard')}}" class="nav-link">
 									<i class="nav-icon fas fa-tachometer-alt"></i>
 									<p>Dashboard</p>
-								</a>																
+								</a>
 							</li>
 							<li class="nav-item">
 								<a href="{{route('category.index')}}" class="nav-link">
@@ -110,14 +113,14 @@
 									<p>Products</p>
 								</a>
 							</li>
-							
+
 							<li class="nav-item">
 								<a href="#" class="nav-link">
 									<!-- <i class="nav-icon fas fa-tag"></i> -->
 									<i class="fas fa-truck nav-icon"></i>
 									<p>Shipping</p>
 								</a>
-							</li>							
+							</li>
 							<li class="nav-item">
 								<a href="orders.html" class="nav-link">
 									<i class="nav-icon fas fa-shopping-bag"></i>
@@ -141,7 +144,7 @@
 									<i class="nav-icon  far fa-file-alt"></i>
 									<p>Pages</p>
 								</a>
-							</li>							
+							</li>
 						</ul>
 					</nav>
 					<!-- /.sidebar-menu -->
@@ -152,14 +155,14 @@
 		@yield('section')
 			<!-- /.content-wrapper -->
 			<footer class="main-footer text-center">
-				
+
 				<strong >Copyright &copy; 2014-2022 AmazingShop All rights reserved.
 			</footer>
-			
+
 		</div>
 		<!-- ./wrapper -->
 		<!-- jQuery -->
-		
+
 		<script src="{{asset('admin-asset/plugins/jquery/jquery.min.js')}}"></script>
 		<!-- Bootstrap 4 -->
 		<script src="{{asset('admin-asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -174,7 +177,8 @@
 
 <!-- Include Dropzone JS -->
 <script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.js"></script>
-
+{{-- relative dropdown  --}}
+<script src="{{ asset('/front-asset/js/magicsuggest.js') }}"></script>
 
 	</body>
 </html>

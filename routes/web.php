@@ -60,6 +60,7 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::get('admin/Product/edit/{id}', [ProductController::class, 'edit'])->name('Product.edit');
     Route::post('admin/Product/update/{id}', [ProductController::class, 'update'])->name('Product.update');
     Route::get('admin/Product/delete/{id}', [ProductController::class, 'delete'])->name('Product.delete');
+    Route::get('admin/getproducts', [ProductController::class, 'getProducts'])->name('Product.getProducts');
     // ProductSubCategoryController
     Route::get('admin/product-subcategories', [ProductSubCategoryController::class, 'index'])->name('product-subcategories.index');
 

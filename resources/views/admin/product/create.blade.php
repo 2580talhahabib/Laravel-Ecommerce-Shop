@@ -182,7 +182,24 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        {{-- related products  --}}
+                        {{-- <div class="card mb-3">
+                            <div class="card-body">
+                                <h2 class="h4 mb-3">Related product</h2>
+                                <div class="mb-3">
+                                    <select name="is_featured" id="is_featured"  class="form-control">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <div class="container">
+                            <h1>jQuery MagicSuggest Plugin with AJAX</h1>
+                            <div id="ms1" class="form-control"></div>
+                          </div>
+
                 </div>
 
                 <div class="pb-5 pt-3">
@@ -309,6 +326,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 </script>
+<script>
+   $(function() {
+    var ms1 = $('#ms1').magicSuggest({
+        // AJAX request to fetch the data dynamically
+        ajaxConfig: {
+            url: '{{ route('Product.getProducts') }}', // URL to your API or server-side script
+            data: function() {
+                // Capture the current value entered in the MagicSuggest input field
+                var query = ms1.getValue().join(',');  // Join if multiple values are selected
+                return { query: query };  // Return the query as part of the data
+            },
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);  // Debug: log the response data
+                ms1.setData(data);
+            },
+            error: function(xhr, status, error) {
+                console.log('AJAX Error: ', status, error);  // Debug: log any errors
+            }
+        },
+        placeholder: 'Search Cities...',
+        allowFreeEntries: true // Allows custom free entries in the field
+    });
+
+    // Optional: Trigger AJAX request manually on input change or form submission
+    $('#ms1').on('change', function() {
+        var query = ms1.getValue().join(',');
+        console.log('Query being submitted:', query);  // Debug the query being sent
+        ms1.ajaxConfig.data = { query: query };  // Update the data object with the new query
+    });
+});
+
+    </script>
 
 @endsection
 

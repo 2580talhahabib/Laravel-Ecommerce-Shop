@@ -179,5 +179,7 @@ if($delete){
 return redirect()->route('Product.index')->with('error', 'product not found');
 
 }
+public function getProducts(Request $req){
 
+}
 }
