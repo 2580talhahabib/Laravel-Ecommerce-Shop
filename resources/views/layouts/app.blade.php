@@ -16,8 +16,9 @@
 
 		<!-- Include Dropzone CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.css" />
-{{-- include relative dropown  --}}
-<link rel="stylesheet" type="text/css" href="{{ asset('front-asset/css/magicsuggest.css') }}" />
+{{-- include  select min 2 dropdown  --}}
+<link rel="stylesheet" href="{{asset('admin-asset/plugins/select2/css/select2.min.css')}}">
+
 
 	</head>
 	<body class="hold-transition sidebar-mini">
@@ -177,8 +178,9 @@
 
 <!-- Include Dropzone JS -->
 <script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.js"></script>
-{{-- relative dropdown  --}}
-<script src="{{ asset('/front-asset/js/magicsuggest.js') }}"></script>
+{{-- include select2 dropdown  --}}
+<script src="{{asset('admin-asset/plugins/select2/js/select2.min.js')}}"></script>
+
 
 	</body>
 </html>

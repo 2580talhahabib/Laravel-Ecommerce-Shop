@@ -47,7 +47,7 @@
                                             <div class="mb-3">
                                                 <label for="description">Description</label>
                                                 <textarea name="description" value="{{ $edit->description }}" id="description" placeholder="Description">
-                                                    {{ old('description', $edit->description ) }}
+                                                    {{ old('description', $edit->description) }}
                                                 </textarea>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                                             <div class="mb-3">
                                                 <label for="description">Short Description</label>
                                                 <textarea name="short_desc" id="short_desc" placeholder="Description">
-                                                    {{ old('short_desc', $edit->short_desc ) }}
+                                                    {{ old('short_desc', $edit->short_desc) }}
                                                 </textarea>
                                             </div>
                                         </div>
@@ -65,7 +65,7 @@
                                             <div class="mb-3">
                                                 <label for="description">Shipping Returns</label>
                                                 <textarea name="shiping_returns" id="shiping_returns" placeholder="Description">
-                                                    {{ old('shiping_returns', $edit->shiping_returns ) }}
+                                                    {{ old('shiping_returns', $edit->shiping_returns) }}
 
                                                 </textarea>
                                             </div>
@@ -148,7 +148,21 @@
                                     </div>
                                 </div>
                             </div>
+                            {{-- related products  --}}
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h2 class="h4 mb-3">Related product</h2>
+                                    <div class="mb-3">
+                                        <select multiple class="related_product w-100" name="related_products[]"
+                                            id="related_products">
+
+                                        </select>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-body">
@@ -261,6 +275,21 @@
         })
 
         $(document).ready(function() {
+            $('.related_product').select2({
+                ajax: {
+                    url: '{{ route('Product.getProducts') }}',
+                    dataType: 'json',
+                    tags: true,
+                    multiple: true,
+                    minimumInputLength: 3,
+                    processResults: function(data) {
+                        return {
+                            results: data.results
+                        };
+                    }
+                }
+            });
+
             $("#addForm").submit(function(e) {
                 e.preventDefault();
                 var formdata = new FormData(this);

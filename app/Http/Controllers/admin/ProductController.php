@@ -104,6 +104,8 @@ $imageName=null;
  $subcategory=SubCategory::where('category_id',$edit->category_id)->get();
 
  $Brand=Brand::latest('name')->get();
+
+ 
  return view('admin.product.update',compact('category', 'Brand','edit','subcategory'));
 
     }
@@ -148,7 +150,8 @@ $imageName=null;
                     'category_id' => $req->category,
                     'sub_category_id' => $req->sub_category,
                     'brand_id' => $req->brand,
-                    'is_featured' => $req->is_featured ,
+                    'is_featured' => $req->is_featured,
+                    'related_products'=>(!empty($req->related_products) ? implode(',',$req->related_products) : ''),
                     ]);
 
             return response()->json([
@@ -180,6 +183,20 @@ return redirect()->route('Product.index')->with('error', 'product not found');
 
 }
 public function getProducts(Request $req){
+    $tempproduct=[];
+ if($req->term != ''){
+    $products=Product::where('title','like','%'.$req->term.'%')->get();
+
+    if($products != null){
+        foreach ($products as $product) {
+            $tempproduct[]=array('id'=>$product->id,'text'=>$product->title);
+        }
+    }
+ }
+return response()->json([
+    'results'=>$tempproduct,
+    'status'=>true,
+]);
 
 }
 }
