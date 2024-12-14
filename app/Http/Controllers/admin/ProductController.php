@@ -17,8 +17,8 @@ class ProductController extends Controller
         if(!empty($req->get('search'))){
            $product= $product->where('title','like','%'.$req->get('search') .'%');
         }
-
       $product=$product->paginate(10);
+
         return view('admin.product.list',compact('product'));
     }
     public function create(){
@@ -73,7 +73,8 @@ $imageName=null;
             'category_id' => $req->category,
             'sub_category_id' => $req->sub_category,
             'brand_id' => $req->brand,
-            'is_featured' => $req->is_featured ,
+            'is_featured' => $req->is_featured,
+            'related_products'=>(!empty($req->related_products) ? implode(',',$req->related_products) : ''),
             ]);
 
             // return redirect()->route('Product.index')->with('success','Product Added Successfully');
@@ -105,8 +106,15 @@ $imageName=null;
 
  $Brand=Brand::latest('name')->get();
 
- 
- return view('admin.product.update',compact('category', 'Brand','edit','subcategory'));
+        // relative product show modulec
+        $relatedproducts=[];
+if($edit->related_products != ''){
+    $productarray=explode(',',$edit->related_products);
+    $relatedproducts=Product::whereIn('id',$productarray)->get();
+
+}
+
+ return view('admin.product.update',compact('category', 'Brand','edit','subcategory','relatedproducts'));
 
     }
 

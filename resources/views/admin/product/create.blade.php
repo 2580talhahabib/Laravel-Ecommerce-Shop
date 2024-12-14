@@ -129,7 +129,20 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
+  {{-- related products  --}}
+  <div class="card mb-3">
+    <div class="card-body">
+        <h2 class="h4 mb-3">Related product</h2>
+        <div class="mb-3">
+            <select multiple class="related_product w-100" name="related_products[]"
+                id="related_products">
+            </select>
+            <p></p>
+        </div>
+    </div>
+</div>
                         </div>
                         <div class="col-md-4">
                             <div class="card mb-3">
@@ -190,7 +203,7 @@
                                     </div>
                                 </div>
                             </div>
-                  
+
                         <div class="pb-5 pt-3">
                             <button class="btn btn-primary" type="submit">Create</button>
                             <a href="products.html" class="btn btn-outline-dark ml-3">Cancel</a>
@@ -227,9 +240,20 @@
         })
 
         $(document).ready(function() {
-
-
-
+            $('.related_product').select2({
+                ajax: {
+                    url: '{{ route('Product.getProducts') }}',
+                    dataType: 'json',
+                    tags: true,
+                    multiple: true,
+                    minimumInputLength: 3,
+                    processResults: function(data) {
+                        return {
+                            results: data.results
+                        };
+                    }
+                }
+            });
 
             $("#addForm").submit(function(e) {
                 e.preventDefault();

@@ -155,6 +155,11 @@
                                     <div class="mb-3">
                                         <select multiple class="related_product w-100" name="related_products[]"
                                             id="related_products">
+                                            @if (!empty($relatedproducts))
+                                            @foreach ($relatedproducts as $relatedproduct)
+                                            <option selected value="{{ $relatedproduct->id }}">{{ $relatedproduct->title }}</option>
+                                            @endforeach
+                                            @endif
 
                                         </select>
                                         <p></p>
