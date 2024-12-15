@@ -126,7 +126,7 @@
                                 <div class="col-md-4">
                                     <div class="card product-card">
                                         <div class="product-image position-relative">
-                                            <a href="" class="product-img"><img class="card-img-top"
+                                            <a href="{{ route('front.product', [$product->slug]) }}" class="product-img"><img class="card-img-top"
                                                     src="{{ asset('/storage/product/' . $product->image) }}"
                                                     alt=""></a>
                                             <a class="whishlist" href="222"><i class="far fa-heart"></i></a>

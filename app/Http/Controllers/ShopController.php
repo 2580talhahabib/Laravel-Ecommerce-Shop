@@ -83,8 +83,19 @@ $product=product::where('slug',$slug)->first();
 if($product== null){
     abort(404);
 }else{
-    return view('frontant.product',compact('product'));
+
+
+        // relative product show modulec
+        $relatedproducts=[];
+if($product->related_products != ''){
+    $productarray=explode(',',$product->related_products);
+    $relatedproducts=Product::whereIn('id',$productarray)->get();
+
 }
+
+    return view('frontant.product',compact('product','relatedproducts'));
+}
+
 
     }
 }
