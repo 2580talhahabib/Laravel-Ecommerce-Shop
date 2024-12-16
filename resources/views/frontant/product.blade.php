@@ -144,10 +144,12 @@ function addToCart(id){
 $.ajax({
     url: '{{ route('front.addToCart') }}',
     type:'post',
-    data:'{id:id}',
+    data:{id: id},
     dataType:'json',
+    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
     success:function(response){
-
     }
 })
 }
