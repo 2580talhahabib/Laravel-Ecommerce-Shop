@@ -150,6 +150,11 @@ $.ajax({
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
     success:function(response){
+    if(response.status == true){
+        window.location.href="{{ route('front.cart') }}"
+    }else{
+        alert(response.message);
+    }
     }
 })
 }
