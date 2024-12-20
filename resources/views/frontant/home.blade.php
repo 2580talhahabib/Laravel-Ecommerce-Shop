@@ -133,7 +133,7 @@
                                 </a>
                                 <a class="whishlist" href="#"><i class="far fa-heart"></i></a>
                                 <div class="product-action">
-                                    <a class="btn btn-dark" href="#">
+                                    <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                                         <i class="fa fa-shopping-cart"></i> Add To Cart
                                     </a>
                                 </div>
@@ -173,7 +173,7 @@
                                 </a>
                                 <a class="whishlist" href="#"><i class="far fa-heart"></i></a>
                                 <div class="product-action">
-                                    <a class="btn btn-dark" href="#">
+                                    <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                                         <i class="fa fa-shopping-cart"></i> Add To Cart
                                     </a>
                                 </div>
@@ -193,5 +193,26 @@
             @endif
         </div>
     </div>
+    <script>
+        function addToCart(id){
+// alert(id)
+$.ajax({
+    url: '{{ route('front.addToCart') }}',
+    type:'post',
+    data:{id: id},
+    dataType:'json',
+    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+    success:function(response){
+    if(response.status == true){
+        window.location.href="{{ route('front.cart') }}"
+    }else{
+        alert(response.message);
+    }
+    }
+})
+}
+    </script>
 </section>
 @endsection

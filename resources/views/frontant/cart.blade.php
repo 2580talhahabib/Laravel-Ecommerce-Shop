@@ -10,7 +10,7 @@
             </ol>
         </div>
     </div>
-</section>h
+</section>
 <section class=" section-9 pt-4">
     <div class="container">
         <div class="row">

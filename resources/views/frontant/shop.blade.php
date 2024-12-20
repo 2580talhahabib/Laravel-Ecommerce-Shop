@@ -132,13 +132,13 @@
                                             <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                             <div class="product-action">
-                                                <a class="btn btn-dark" href="#">
+                                                <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                                                     <i class="fa fa-shopping-cart"></i> Add To Cart
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="card-body text-center mt-3">
-                                            <a class="h6 link" href="product.php">{{ $product->title }}</a>
+                                            <a class="h6 link" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">{{ $product->title }}</a>
                                             <div class="price mt-2">
                                                 <span class="h5"><strong>{{ $product->price }}</strong></span>
                                                 @if ($product->compare_price > 0)
@@ -214,5 +214,24 @@
         }
     })
 
+    function addToCart(id){
+// alert(id)
+$.ajax({
+    url: '{{ route('front.addToCart') }}',
+    type:'post',
+    data:{id: id},
+    dataType:'json',
+    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+    success:function(response){
+    if(response.status == true){
+        window.location.href="{{ route('front.cart') }}"
+    }else{
+        alert(response.message);
+    }
+    }
+})
+}
 
 </script>
