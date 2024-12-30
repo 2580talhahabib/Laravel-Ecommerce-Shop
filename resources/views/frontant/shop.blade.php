@@ -113,9 +113,12 @@
                             <div class="d-flex align-items-center justify-content-end mb-4">
                                 <div class="ml-2">
                                     <select name="sort" id="sort" class="form-control">
-                                        <option value="price_latest" {{ ($sort == 'price_latest' ) ? 'selected' :  ''}}>Latest</option>
-                                        <option value="price_high"     {{ ($sort == 'price_high' ) ? 'selected' :  ''}}>Price High</option>
-                                        <option value="price_low"     {{ ($sort == 'price_low' ) ? 'selected' :  ''}}>Price Low</option>
+                                        <option value="price_latest" {{ $sort == 'price_latest' ? 'selected' : '' }}>
+                                            Latest</option>
+                                        <option value="price_high" {{ $sort == 'price_high' ? 'selected' : '' }}>Price
+                                            High</option>
+                                        <option value="price_low" {{ $sort == 'price_low' ? 'selected' : '' }}>Price
+                                            Low</option>
                                     </select>
 
                                 </div>
@@ -126,19 +129,22 @@
                                 <div class="col-md-4">
                                     <div class="card product-card">
                                         <div class="product-image position-relative">
-                                            <a href="{{ route('front.product', [$product->slug]) }}" class="product-img"><img class="card-img-top"
+                                            <a href="{{ route('front.product', [$product->slug]) }}"
+                                                class="product-img"><img class="card-img-top"
                                                     src="{{ asset('/storage/product/' . $product->image) }}"
                                                     alt=""></a>
                                             <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                             <div class="product-action">
-                                                <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                                                <a class="btn btn-dark" href="javascript:void(0);"
+                                                    onclick="addToCart({{ $product->id }});">
                                                     <i class="fa fa-shopping-cart"></i> Add To Cart
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="card-body text-center mt-3">
-                                            <a class="h6 link" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">{{ $product->title }}</a>
+                                            <a class="h6 link" href="javascript:void(0);"
+                                                onclick="addToCart({{ $product->id }});">{{ $product->title }}</a>
                                             <div class="price mt-2">
                                                 <span class="h5"><strong>{{ $product->price }}</strong></span>
                                                 @if ($product->compare_price > 0)
@@ -164,31 +170,31 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $(".js-range-slider").ionRangeSlider({
-        type: "double",
-        min: 0,
-        max: 1000,
-        from: {{ $min ?? 0  }},
-        step: 10,
-        to: {{ $max ?? 1000  }},
-        skin: "round",
-        max_postfix: "+",
-        prefix: "$",
-        onFinish: function($image) {
-            getready();
-        }
-    });
-    var slider = $(".js-range-slider").data("ionRangeSlider");
+            type: "double",
+            min: 0,
+            max: 1000,
+            from: {{ $min ?? 0 }},
+            step: 10,
+            to: {{ $max ?? 1000 }},
+            skin: "round",
+            max_postfix: "+",
+            prefix: "$",
+            onFinish: function($image) {
+                getready();
+            }
+        });
+        var slider = $(".js-range-slider").data("ionRangeSlider");
 
 
-    // var slider=$("")
+        // var slider=$("")
 
         $('.brand-label').change(function() {
             getready()
         })
 
-        $('#sort').change(function(){
+        $('#sort').change(function() {
             getready();
         })
 
@@ -200,38 +206,39 @@
                 }
             })
             var url = '{{ url()->current() }}?';
-            url += '&min_price='+slider.result.from+'&max_price='+slider.result.to;
-            if(brand.length >0){
-                url +='&brand=' + brand.toString();
+            url += '&min_price=' + slider.result.from + '&max_price=' + slider.result.to;
+            if (brand.length > 0) {
+                url += '&brand=' + brand.toString();
             }
 
-        //    for sorting
-        url += '&sort='+$('#sort').val();
+            //    for sorting
+            url += '&sort=' + $('#sort').val();
 
-            window.location.href = url ;
+            window.location.href = url;
             // console.log(brand.push())
 
         }
     })
 
-    function addToCart(id){
-// alert(id)
-$.ajax({
-    url: '{{ route('front.addToCart') }}',
-    type:'post',
-    data:{id: id},
-    dataType:'json',
-    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-    success:function(response){
-    if(response.status == true){
-        window.location.href="{{ route('front.cart') }}"
-    }else{
-        alert(response.message);
+    function addToCart(id) {
+        // alert(id)
+        $.ajax({
+            url: '{{ route('front.addToCart') }}',
+            type: 'post',
+            data: {
+                id: id
+            },
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                if (response.status == true) {
+                    window.location.href = "{{ route('front.cart') }}"
+                } else {
+                    alert(response.message);
+                }
+            }
+        })
     }
-    }
-})
-}
-
 </script>

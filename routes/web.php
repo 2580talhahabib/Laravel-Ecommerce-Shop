@@ -21,6 +21,8 @@ Route::get('/shop/{categoryslug?}/{subcategoryslug?}',[ShopController::class,'in
 Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.product');
 Route::get('/cart',[CartController::class,'Cart'])->name('front.cart');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('front.addToCart');
+// Route::post('/UpdateCart-cart',[CartController::class,'UpdateCart'])->name('front.UpdateCart');
+
 
 
 // AdminLoginController
