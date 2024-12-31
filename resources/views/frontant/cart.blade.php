@@ -104,7 +104,7 @@
     </div>
 </section>
 <script src="{{ asset('front-asset/js/jquery-3.6.0.min.js') }}"></script>
-<script>
+{{-- <script>
 
     $('.add').click(function(){
       var qtyElement = $(this).parent().prev();
@@ -113,7 +113,7 @@
         var rowId=$(this).data('id');
           var newQty=qtyElement.val()
           qtyElement.val(qtyValue+1);
-          updateCart(rowId,newQty)
+        //   updateCart(rowId,newQty)
       }
   });
 
@@ -124,21 +124,21 @@
         var rowId=$(this).data('id');
         var newQty=qtyElement.val()
           qtyElement.val(qtyValue-1);
-          updateCart(rowId,qty)
+        //   updateCart(rowId,qty)
       }
   });
-// function updateCart(rowId,qty){
-//     $.ajax({
-//         url:"{{ route('front.UpdateCart') }}";
-//         type:'post';
-//         data:{rowId:rowId,qty:qty};
-//         dataType:'json';
-//         success:function(response){
-//         console.log(response)
-//         }
-//     })
+function updateCart(rowId,qty){
+    $.ajax({
+        url:"{{ route('front.UpdateCart') }}";
+        type:'post';
+        data:{rowId:rowId,qty:qty};
+        dataType:'json';
+        success:function(response){
+        console.log(response)
+        }
+    })
 }
 
 
-</script>
+</script> --}}
 @endsection

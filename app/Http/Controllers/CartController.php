@@ -96,7 +96,7 @@ class CartController extends Controller
     $cartContent=Cart::content();
         return view('frontant.cart',compact('cartContent'));
     }
-    public function UpdateCart(Request $req){
+    // public function UpdateCart(Request $req){
 
-    }
+    // }
 }
